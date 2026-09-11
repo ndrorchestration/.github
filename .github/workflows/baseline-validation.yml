@@ -56,8 +56,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -q "do not transfer" EVIDENCE_STANDARD_2026-08-30.md
-          grep -q "Repository-local" CONTRIBUTING.md
-          grep -q "does not" SECURITY.md
+          grep -qi "do not transfer" EVIDENCE_STANDARD_2026-08-30.md
+          grep -qi "repository-local" CONTRIBUTING.md
+          grep -qi "does not" SECURITY.md
           grep -q "DGAF-Framework" SUPPORT.md
           echo "baseline evidence-boundary markers: PASS"
