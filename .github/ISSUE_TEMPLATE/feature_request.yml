@@ -1,0 +1,55 @@
+name: Feature request
+description: Propose a bounded repository-local capability or improvement
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose the smallest useful change. Reuse across repositories does not transfer validation or status; define success for the target repository.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or need
+      description: What concrete problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed scope
+      description: Describe the bounded capability, interface, or documentation change.
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Repository-local success criteria
+      description: What observable conditions would show the feature is implemented correctly in this repository?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence needed for stronger claims
+      description: Identify tests, runtime verification, independent review, deployment evidence, empirical evaluation, or other evidence needed before promoting related claims.
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-goals
+      description: State what this proposal deliberately will not establish or change.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies or related repositories
+      description: List related projects or shared patterns without assuming their evidence transfers here.
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I checked existing issues and open pull requests for overlapping work.
+          required: true
+        - label: The proposed success criteria are bounded to this repository unless explicit cross-repository evidence is produced.
+          required: true

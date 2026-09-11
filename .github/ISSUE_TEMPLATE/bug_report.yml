@@ -1,0 +1,72 @@
+name: Bug report
+description: Report reproducible incorrect behavior in a repository
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report the observed repository-local behavior. Do not include secrets, credentials, private data, or exploit details; use the applicable SECURITY.md for vulnerabilities.
+  - type: input
+    id: revision
+    attributes:
+      label: Repository revision
+      description: Commit SHA, tag, release, or branch used when the problem occurred.
+      placeholder: e.g. abc1234
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Give the smallest reliable sequence that reproduces the behavior.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, runtime/tool versions, deployment/local mode, and other conditions needed to reproduce.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or logs
+      description: Paste minimal sanitized output or link to non-sensitive evidence. Remove secrets and personal/private data.
+  - type: dropdown
+    id: claim-impact
+    attributes:
+      label: Does this affect a documented status or evidence claim?
+      options:
+        - No or unknown
+        - Yes — software/implementation claim
+        - Yes — deployment/runtime claim
+        - Yes — governance/authorization claim
+        - Yes — empirical/scientific claim
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I checked existing issues and open pull requests for the same problem.
+          required: true
+        - label: I have not included live secrets, credentials, private data, or public exploit details.
+          required: true

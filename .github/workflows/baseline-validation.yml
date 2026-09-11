@@ -1,0 +1,62 @@
+name: Baseline Validation
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Require baseline files
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            CONTRIBUTING.md
+            SECURITY.md
+            SUPPORT.md
+            EVIDENCE_STANDARD_2026-08-30.md
+            .github/pull_request_template.md
+            .github/ISSUE_TEMPLATE/bug_report.yml
+            .github/ISSUE_TEMPLATE/feature_request.yml
+            .github/ISSUE_TEMPLATE/config.yml
+          )
+          for path in "${required[@]}"; do
+            test -s "$path" || { echo "missing or empty: $path"; exit 1; }
+          done
+
+      - name: Parse issue-template YAML
+        shell: bash
+        run: |
+          ruby -e '
+            require "yaml"
+            paths = %w[
+              .github/ISSUE_TEMPLATE/bug_report.yml
+              .github/ISSUE_TEMPLATE/feature_request.yml
+              .github/ISSUE_TEMPLATE/config.yml
+            ]
+            paths.each do |path|
+              data = YAML.safe_load(File.read(path), aliases: false)
+              raise "#{path}: expected mapping" unless data.is_a?(Hash)
+              puts "#{path}: PASS"
+            end
+          '
+
+      - name: Verify evidence-boundary markers
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -qi "do not transfer" EVIDENCE_STANDARD_2026-08-30.md
+          grep -qi "repository-local" CONTRIBUTING.md
+          grep -qi "does not" SECURITY.md
+          grep -q "DGAF-Framework" SUPPORT.md
+          echo "baseline evidence-boundary markers: PASS"
