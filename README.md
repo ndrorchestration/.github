@@ -24,7 +24,7 @@ Each project remains authoritative for its own implementation, CI results, deplo
 
 `ndrorchestration/DGAF-Framework` remains authoritative only for DGAF/PDMAL governance, experiment authorization, and scientific-state claims. Reusing a DGAF pattern, workflow idea, terminology rule, or helper does not import DGAF evidence state into another project.
 
-Portfolio role, lifecycle, relationship, and disposition are maintained in the ecosystem's Notion classification layer rather than duplicated here as moving state.
+Account-level repository lifecycle, portfolio role, and disposition are maintained in `ndrorchestration/ndrorchestration` through `ecosystem/repository-lifecycle.json` and its human-readable lifecycle map. That classification is account-level only and does not override project-local implementation/evidence truth. Notion and other workspace records are coordination/projection surfaces rather than competing lifecycle authorities.
 
 ## Evidence boundary
 
